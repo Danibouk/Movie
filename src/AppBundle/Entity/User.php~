@@ -253,27 +253,4 @@ class User implements UserInterface
     {
         return $this->dateModified;
     }
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     * @return User
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string 
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
 }
