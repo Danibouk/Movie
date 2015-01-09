@@ -1,0 +1,65 @@
+Movies - Symfony2
+
+Movies est un site de recommandation de films. 
+Tous les films de notre base de données sont à voir !
+
+Niveau 1 
+
+    ACCUEIL
+        La page d'accueil présente une liste d'affiches de film. Chaque poster est cliquable, et mène vers la page de détails du film. 
+
+        Par défaut, 50 posters sont affichés (les 50 films les plus récents). Un système de pagination sera mis en place plus tard. 
+
+
+    PAGE DE DÉTAILS
+        La page de détail d'un film affiche le poster, le titre, l'année, et toutes les autres informations publiques que nous possédons sur le film. 
+
+Niveau 2
+
+    PAGINATION ET FILTRE
+        Ajouter un système de pagination à la page d'accueil. Il doit ainsi être possible de : 
+            - naviguer vers la "page suivante" ou la "page précédente" grâce à 2 boutons. Ces boutons ne doivent être présents (ou actifs) que s'il y a lieu. 
+            - afficher le numéro des films actuellement affichés, sur le total de films (du genre : "affichage des films #51 à 100 sur 357 films").
+
+        Ajouter un système de filtre par année de réalisation du film. Deux listes déroulantes permettent ainsi de choisir l'"année miminale" et l'"année maximale". 
+
+Niveau 3
+    
+    UTILISATEURS
+        Permettre aux utilisateurs du site de : 
+            - se créer un compte
+            - se connecter
+            - se déconnecter
+            - récupérer un mot de passe oublié 
+
+        Une fois connecté, un message doit indiqué "Bonjour pseudo !" dans l'entête du site, ainsi qu'un lien de déconnexion.
+        Lorsque déconnecté, un lien vers la page de connexion, et un autre vers la page d'inscription sont affichés dans l'entête. 
+
+
+Niveau 4 
+
+    WATCHLIST
+        Un utilisateur connecté devrait pouvoir ajouter les films à sa liste personnelle de "films à voir", sa watchlist. Ajouter un bouton sur la page de détails des films à cet effet.
+
+        Sur la page de détail du film, le bouton devrait se transformer en bouton "RETIRER de ma watchlist" lorsque le film est déjà ajouté à la watchlist. 
+
+        Un lien, présent dans l'entête du site, devrait permettre à l'utilisateur connecté d'accéder à sa watchlist. Celle-ci affiche la liste, comme en page d'accueil, de tous les posters de films ajoutés.
+
+
+Niveau 5 
+
+    PAGE DÉTAILS
+        Ajouter un bouton permettant de partager la fiche de ce film par email (à un ami, pour lequel on entre manuellement son adresse...)
+
+    ACCUEIL
+        Ajouter un champs permettant de rechercher un film par mots-clefs. La recherche doit se faire dans les champs que vous jugerez pertinent, mais au minimum dans "title", "directors" et "actors". 
+
+
+Niveau 6
+    
+    BACK OFFICE
+        Créer un back-office permettant de gérer les films. Celui-ci devrait avoir la gueule de PHPMyAdmin. 
+        En effet, une liste sous forme de tableur devrait présenter les films. Sur chaque ligne, un bouton doit permettre de supprimer le film, et un autre de le modifier. 
+
+        Un lien au-dessus de ce tableau devrait permettre d'ajouter un nouveau film. 
+

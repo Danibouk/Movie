@@ -1,0 +1,18 @@
+Structure de l'entité "Movie"
+
+id              auto                            identifiant mysql
+imdbId          string 20                       identifiant sur imdb.com, et nom du fichier image
+title           string 255                      titre du film
+year            integer 4                       année de sortie
+rating          decimal 2,1                     note sur 10 avec une décimale
+votes           integer 11                      nombre de votes
+released        date            nullable        date de sortie
+genres          string 255                      catégories du film
+directors       string 255                      réalisateurs
+writers         string 255      nullable        scénaristes
+actors          string 255      nullable        acteurs
+plot            text            nullable        résumé du film
+countries       string 255      nullable        pays de réalisation
+poster          text                            url de l'affiche sur imdb
+dateModified    datetime                        dernière date de modification interne
+dateCreated     datetime                        date de création interne
