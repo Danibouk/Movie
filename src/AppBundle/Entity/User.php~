@@ -46,7 +46,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=30)
+     * @ORM\Column(name="salt", type="string", length=50)
      */
     private $salt;
     
@@ -77,6 +77,11 @@ class User implements UserInterface
      * @ORM\Column(name="dateModified", type="datetime")
      */
     private $dateModified;
+    
+    /**
+     * @ORM\manyToMany(targetEntity="Movie", mappedBy="users")
+     */
+    private $movies;
 
     /**
      * Get id
@@ -252,5 +257,28 @@ class User implements UserInterface
     public function getDateModified()
     {
         return $this->dateModified;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

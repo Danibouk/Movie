@@ -31,23 +31,23 @@ class Movie
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="annee", type="integer", precision=4)
+     * @ORM\Column(name="year", type="integer", precision=4)
      */
-    private $annee;
+    private $year;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="note", type="decimal", precision=2, scale=1)
+     * @ORM\Column(name="rating", type="decimal", precision=2, scale=1)
      */
-    private $note;
+    private $rating;
 
     /**
      * @var integer
@@ -59,72 +59,78 @@ class Movie
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="sortie", type="date", nullable=true)
+     * @ORM\Column(name="released", type="date", nullable=true)
      */
-    private $sortie;
+    private $released;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\Column(name="genres", type="string", length=255)
      */
-    private $categorie;
+    private $genres;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="realisateurs", type="string", length=255)
+     * @ORM\Column(name="directors", type="string", length=255)
      */
-    private $realisateurs;
+    private $directors;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="scenaristes", type="string", length=255, nullable=true)
+     * @ORM\Column(name="writers", type="string", length=255, nullable=true)
      */
-    private $scenaristes;
+    private $writers;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="acteurs", type="string", length=255, nullable=true)
+     * @ORM\Column(name="actors", type="string", length=255, nullable=true)
      */
-    private $acteurs;
+    private $actors;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="resume", type="text", nullable=true)
+     * @ORM\Column(name="plot", type="text", nullable=true)
      */
-    private $resume;
+    private $plot;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255, nullable=true)
+     * @ORM\Column(name="countries", type="string", length=255, nullable=true)
      */
-    private $pays;
+    private $countries;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="afficheUrl", type="text")
+     * @ORM\Column(name="poster", type="text")
      */
-    private $afficheUrl;
+    private $poster;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateModification", type="datetime")
+     * @ORM\Column(name="dateModified", type="datetime")
      */
-    private $dateModification;
+    private $dateModified;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="datetime")
+     * @ORM\Column(name="dateCreated", type="datetime")
      */
-    private $dateCreation;
+    private $dateCreated;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="movies")
+     * @ORM\JoinTable(name="user_movie")
+     */
+    private $users;
 
 
     /**
@@ -159,76 +165,7 @@ class Movie
     {
         return $this->imdbId;
     }
-
-    /**
-     * Set titre
-     *
-     * @param string $titre
-     * @return Movie
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string 
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * Set annee
-     *
-     * @param integer $annee
-     * @return Movie
-     */
-    public function setAnnee($annee)
-    {
-        $this->annee = $annee;
-
-        return $this;
-    }
-
-    /**
-     * Get annee
-     *
-     * @return integer 
-     */
-    public function getAnnee()
-    {
-        return $this->annee;
-    }
-
-    /**
-     * Set note
-     *
-     * @param string $note
-     * @return Movie
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    /**
-     * Get note
-     *
-     * @return string 
-     */
-    public function getNote()
-    {
-        return $this->note;
-    }
-
+  
     /**
      * Set votes
      *
@@ -251,234 +188,344 @@ class Movie
     {
         return $this->votes;
     }
-
+    
+    
     /**
-     * Set sortie
+     * Set title
      *
-     * @param \DateTime $sortie
+     * @param string $title
      * @return Movie
      */
-    public function setSortie($sortie)
+    public function setTitle($title)
     {
-        $this->sortie = $sortie;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get sortie
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set year
+     *
+     * @param integer $year
+     * @return Movie
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return integer 
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param string $rating
+     * @return Movie
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return string 
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set released
+     *
+     * @param \DateTime $released
+     * @return Movie
+     */
+    public function setReleased($released)
+    {
+        $this->released = $released;
+
+        return $this;
+    }
+
+    /**
+     * Get released
      *
      * @return \DateTime 
      */
-    public function getSortie()
+    public function getReleased()
     {
-        return $this->sortie;
+        return $this->released;
     }
 
     /**
-     * Set categorie
+     * Set genres
      *
-     * @param string $categorie
+     * @param string $genres
      * @return Movie
      */
-    public function setCategorie($categorie)
+    public function setGenres($genres)
     {
-        $this->categorie = $categorie;
+        $this->genres = $genres;
 
         return $this;
     }
 
     /**
-     * Get categorie
+     * Get genres
      *
      * @return string 
      */
-    public function getCategorie()
+    public function getGenres()
     {
-        return $this->categorie;
+        return $this->genres;
     }
 
     /**
-     * Set realisateurs
+     * Set directors
      *
-     * @param string $realisateurs
+     * @param string $directors
      * @return Movie
      */
-    public function setRealisateurs($realisateurs)
+    public function setDirectors($directors)
     {
-        $this->realisateurs = $realisateurs;
+        $this->directors = $directors;
 
         return $this;
     }
 
     /**
-     * Get realisateurs
+     * Get directors
      *
      * @return string 
      */
-    public function getRealisateurs()
+    public function getDirectors()
     {
-        return $this->realisateurs;
+        return $this->directors;
     }
 
     /**
-     * Set scenaristes
+     * Set writers
      *
-     * @param string $scenaristes
+     * @param string $writers
      * @return Movie
      */
-    public function setScenaristes($scenaristes)
+    public function setWriters($writers)
     {
-        $this->scenaristes = $scenaristes;
+        $this->writers = $writers;
 
         return $this;
     }
 
     /**
-     * Get scenaristes
+     * Get writers
      *
      * @return string 
      */
-    public function getScenaristes()
+    public function getWriters()
     {
-        return $this->scenaristes;
+        return $this->writers;
     }
 
     /**
-     * Set acteurs
+     * Set actors
      *
-     * @param string $acteurs
+     * @param string $actors
      * @return Movie
      */
-    public function setActeurs($acteurs)
+    public function setActors($actors)
     {
-        $this->acteurs = $acteurs;
+        $this->actors = $actors;
 
         return $this;
     }
 
     /**
-     * Get acteurs
+     * Get actors
      *
      * @return string 
      */
-    public function getActeurs()
+    public function getActors()
     {
-        return $this->acteurs;
+        return $this->actors;
     }
 
     /**
-     * Set resume
+     * Set plot
      *
-     * @param string $resume
+     * @param string $plot
      * @return Movie
      */
-    public function setResume($resume)
+    public function setPlot($plot)
     {
-        $this->resume = $resume;
+        $this->plot = $plot;
 
         return $this;
     }
 
     /**
-     * Get resume
+     * Get plot
      *
      * @return string 
      */
-    public function getResume()
+    public function getPlot()
     {
-        return $this->resume;
+        return $this->plot;
     }
 
     /**
-     * Set pays
+     * Set countries
      *
-     * @param string $pays
+     * @param string $countries
      * @return Movie
      */
-    public function setPays($pays)
+    public function setCountries($countries)
     {
-        $this->pays = $pays;
+        $this->countries = $countries;
 
         return $this;
     }
 
     /**
-     * Get pays
+     * Get countries
      *
      * @return string 
      */
-    public function getPays()
+    public function getCountries()
     {
-        return $this->pays;
+        return $this->countries;
     }
 
     /**
-     * Set afficheUrl
+     * Set poster
      *
-     * @param string $afficheUrl
+     * @param string $poster
      * @return Movie
      */
-    public function setAfficheUrl($afficheUrl)
+    public function setPoster($poster)
     {
-        $this->afficheUrl = $afficheUrl;
+        $this->poster = $poster;
 
         return $this;
     }
 
     /**
-     * Get afficheUrl
+     * Get poster
      *
      * @return string 
      */
-    public function getAfficheUrl()
+    public function getPoster()
     {
-        return $this->afficheUrl;
+        return $this->poster;
     }
 
     /**
-     * Set dateModification
+     * Set dateModified
      *
-     * @param \DateTime $dateModification
+     * @param \DateTime $dateModified
      * @return Movie
      */
-    public function setDateModification($dateModification)
+    public function setDateModified($dateModified)
     {
-        $this->dateModification = $dateModification;
+        $this->dateModified = $dateModified;
 
         return $this;
     }
 
     /**
-     * Get dateModification
+     * Get dateModified
      *
      * @return \DateTime 
      */
-    public function getDateModification()
+    public function getDateModified()
     {
-        return $this->dateModification;
+        return $this->dateModified;
     }
 
     /**
-     * Set dateCreation
+     * Set dateCreated
      *
-     * @param \DateTime $dateCreation
+     * @param \DateTime $dateCreated
      * @return Movie
      */
-    public function setDateCreation($dateCreation)
+    public function setDateCreated($dateCreated)
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }
 
     /**
-     * Get dateCreation
+     * Get dateCreated
      *
      * @return \DateTime 
      */
-    public function getDateCreation()
+    public function getDateCreated()
     {
-        return $this->dateCreation;
+        return $this->dateCreated;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add users
+     *
+     * @param \AppBundle\Entity\User $users
+     * @return Movie
+     */
+    public function addUser(\AppBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\User $users
+     */
+    public function removeUser(\AppBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

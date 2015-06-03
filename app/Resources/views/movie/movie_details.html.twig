@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   
+  <div class="container">
+      
+      <div class="movie">
+            
+      <img class="bigposter" src="{{ asset('img/posters/' ~ movie.ImdbId ~ '.jpg')}}" title="{{ movie.title }}"/>
+      <br/>
+      <p class="watchlistButton">
+          <a href=" {{ path('addToWatchlist', {'movieId':movie.id})}}"> Ajouter à ma watchlist ! </a><br/></p>
+      
+      <p class="watchlistButton">
+          <a href=" {{ path('removeToWatchlist', {'movieId':movie.id})}}"> Retirer de ma watchlist ! </a></p>
+  </div>       
+     
+  <div class="detailsMovie"> 
+          <h2>{{movie.title}} </h2> 
+          <p><span>Année : </span>{{movie.year}} </p>
+          <p><span>Note sur 10 : </span>{{movie.rating}} </p>
+          <p><span>Nombre de votes : </span>{{movie.votes}} </p>
+          {#<p>{{movie.released}} </p>#}
+          <p><span>Synopsis : </span>{{movie.plot}} <br/></p>
+          <p><span>Genre : </span>{{movie.genres}} </p>
+          <p><span>Réalisateurs : </span>{{movie.directors}} </p>
+          <p><span>Auteurs : </span>{{movie.writers}} </p>
+          <p><span>Acteurs : </span>{{movie.actors}} </p>
+          <p><span>Pays : </span>{{movie.countries}} </p>
+          {#<p>{{movie.dateModified}} </p>
+          <p>{{movie.dateCreated}} </p>#}
+     
+</div>
+  </div>
+          
+{% endblock %}

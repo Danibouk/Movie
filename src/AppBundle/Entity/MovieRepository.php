@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * MovieRepository
@@ -12,4 +13,45 @@ use Doctrine\ORM\EntityRepository;
  */
 class MovieRepository extends EntityRepository
 {
+    public function findByYear($minYear, $maxYear, $numPerPage = 56, $offset=0) {
+        $query = $this->createQueryBuilder("m")
+                ->select("m")
+                ->andWhere("m.year >= :minYear")
+                ->andWhere("m.year <= :maxYear")
+                ->setParameter("minYear", $minYear)
+                ->setParameter("maxYear", $maxYear)
+                ->setMaxResults($numPerPage)
+                ->setFirstResult($offset)
+                ->addOrderBy("m.year", "DESC")
+//                ->addOrderBy("m.rating", "DESC")
+                ->getQuery();
+       
+         $paginator = new Paginator($query);
+         return $paginator;
+        
+        $movies = $query->getResult();
+        return $movies;
+                
+    }    
+          
+    public function countAll($minYear = 0, $maxYear = 3000) {
+            $queryBuilder = $this->createQueryBuilder("m")
+                        ->select("COUNT(m)");
+                        
+          if (!empty($minYear)) {
+              $queryBuilder->andWhere("m.year >= :minYear");
+              $queryBuilder->setParameter("minYear" , $minYear);
+          }
+              
+            if (!empty($maxYear)) {
+              $queryBuilder->andWhere("m.year <= :maxYear");
+              $queryBuilder->setParameter("maxYear" , $maxYear);
+          }
+            
+            $query = $queryBuilder->getQuery();
+            
+            $count = $query->getSingleScalarResult();
+            return $count;
+        }
+        
 }

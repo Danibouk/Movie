@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   
+<div class="container">
+
+    
+          <h1>Ma watchlist </h1>
+          {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-warning"> {{ flashMessage}}</div>
+            {% endfor %}    
+            
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success" > {{ flashMessage}}</div>
+            {% endfor %} 
+          
+          <div>
+              
+       {% include'includes/movies_loop.html.twig' %}
+           
+         
+          
+          
+             
+</div>
+{% endblock  %}

@@ -1,0 +1,6 @@
+{% for movie in movies %}
+    
+           <a href="{{ path('movieDetails', {'id':movie.id}) }}">
+          <img class="poster" src="{{ asset('img/posters/' ~ movie.ImdbId ~ '.jpg') }}" title="{{ movie.title }}" />
+           </a>
+{% endfor %}

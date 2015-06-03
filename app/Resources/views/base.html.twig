@@ -3,11 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}
+             <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+             <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
+        {% endblock %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+         <div class="container">
+         <nav class=" navbar navbar-inverse navbar-fixed-top">
+        
+                  
+                    
+                    <ul class="nav nav-pills">
+                            {% if app.user != null %}
+                            <li><a href="{{ path('listMovies') }}" title="homepage">Homepage</a></li>
+                            <li><a href="" >Bonjour {{app.user.username}} </a></li>
+                            <li><a href="{{ path('logout') }}" title="Logout">Logout</a></li>
+                            <li><a href="{{path('viewWatchlist')}}">Watchlist</a></li>
+                            {% else %}
+                            <li><a href="{{ path('listMovies') }}" title="homepage">Homepage</a></li>
+                            <li><a href="{{ path('login') }}" title="Login">Login</a></li>
+                            <li><a href="{{ path('register') }}"title="Register">Register</a></li>
+                            {% endif %}
+                   </ul>
+                   
+                    </nav>
+        </div>
+                              
+                    
+                
+                
+                
+        {% block body %}
+            
+         
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
+
+

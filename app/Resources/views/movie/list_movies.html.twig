@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   
+<div class="container">
+     
+    
+    <h1>Movies !</h1>
+          
+          <div>
+                             
+                <ol class="breadcrumb">
+                         
+                         {% if page > 1 %}
+                         <li><a href="{{ path('listMovies', 
+                         {'page' : page-1, "minYear" : minYear, "maxYear" :maxYear}) }}">Films précédents</a></li>
+                         {% endif %}
+                         
+                         {% if page < maxPages %}          
+                         <li><a href="{{ path('listMovies', {'page' :page+1, "minYear" : minYear, "maxYear" :maxYear}) }}">Films suivants</a></li>
+                         {% endif %}
+               </ol>
+                
+                              {#formulaire de filtre par année#}
+               <form method="GET" id="filterForm" action="{{ path('listMovies') }}"> Recherche par année 
+                   {% set nowYear = "now" | date("Y") %}
+              
+                   <select name="maxYear">
+              {% for i in nowYear..1900 %}
+              <option value="{{ i }}" {% if (i == maxYear) %} selected="selected" {% endif %}>
+                            {{ i }}  </option>  
+                            {% endfor %}
+                             </select> à
+                    
+              
+              <select name="minYear">
+                 {% for i in nowYear..1900 %}
+              <option value="{{ i }}" {% if (i == minYear) %} selected="selected" {% endif %}>
+                            {{ i }} </option>
+                            {% endfor %}
+                             </select>
+              
+                           
+              <input type ="submit" value="Valider" />
+                                 
+               </form>
+                             
+          </div>
+       
+      <p>Affichage des Films {{(page -1) * numPerPage + 1 }} à  
+         {% if numPerPage * page > moviesNumber %}
+         {{moviesNumber}}
+         {% else%}    
+         {{numPerPage * page}}
+         {% endif%} /
+         {{ moviesNumber }} films 
+            
+       </p>
+       <div>
+       {% include'includes/movies_loop.html.twig' %}
+       </div>  
+        
+      
+</div>
+{% endblock  %}
+
